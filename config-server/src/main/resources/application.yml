@@ -1,0 +1,33 @@
+server:
+  port: 8769
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+#        git:
+#          uri: https://github.com/xxxxx(你自己的账户名)/springcloud_for_noob.git # 配置git仓库的地址
+#          search-paths: config-repo                              # git仓库地址下的相对地址，可以配置多个，用,分割。
+#          username: xxxxxxxxx                               # git仓库的账号
+#          password: xxxxxxx
+
+        native:
+          search-locations: D:/workspace/bj-scm/svn/BJMC-01-SCM-DEV/config/
+  profiles:
+    #    active: subversion
+    active: native #使用本地配置文件
+    # kafka
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+    bus:
+      trace:
+        enabled: true
+# 客户端调用需要
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
